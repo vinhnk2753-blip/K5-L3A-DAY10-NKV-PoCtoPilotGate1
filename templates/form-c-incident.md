@@ -1,6 +1,6 @@
 # Phiếu C · Sự cố và quyết định v2 · Khối 3 (phút 125–200)
 
-**Bàn:** ______ · **Thẻ đã bốc:** ___ *(để trống tới phút 125; bốc số xong thì ghi đúng số đó, ví dụ `S3`. Lab Coach đối chiếu với sổ; lệnh tự kiểm tra in dòng này trong report.)*
+**Bàn:** `NKV (K5-L3A-DAY10-NKV-PoCtoPilotGate1)` · **Thẻ đã bốc:** `S4` *(đã ghi số thẻ S4; chờ `git pull ... upstream main` ở phút 125 khi giảng viên đẩy gói `incidents/S4/` lên repo mẫu để chạy `lab10.grade --incident S4` và điền `C0–C12`)*
 
 Mở `incidents/Sx/card.md` của đúng số đã bốc. Các bước trên thẻ trỏ về đúng mục trong phiếu này. Mục C3 chỉ điền phần ứng với
 số thẻ của bàn; các phần khác để trống.

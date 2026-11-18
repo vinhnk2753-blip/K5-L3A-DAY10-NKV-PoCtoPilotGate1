@@ -5,7 +5,7 @@
 - Tên nhóm (`TenNhom`, không dấu, không khoảng trắng): `NKV`
 - Lớp: `L3A`
 - Repo của bàn: `K5-L3A-DAY10-NKV-PoCtoPilotGate1`
-- Thẻ sự cố đã bốc (S1–S8): *(chưa bốc — chờ phút 125)*
+- Thẻ sự cố đã bốc (S1–S8): `S4` *(chờ giảng viên đẩy gói `incidents/S4/` lên `upstream/main` ở phút 125 để kéo và chạy Vòng 2)*
 
 ## Thành viên
 
