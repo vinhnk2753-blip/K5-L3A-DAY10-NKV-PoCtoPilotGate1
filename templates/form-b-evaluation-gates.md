@@ -281,6 +281,12 @@ Số người trực duyệt mỗi ca: `1` · Mỗi giờ duyệt được: `6` 
 | Ngưỡng nào thì **thu hẹp** phạm vi (khoá `business.pilot_scope`) hoặc **tắt** một thao tác ghi (`config/switches.json`)? Ai quyết? | Nếu đã lên `2` người trực mà hàng chờ vẫn vượt **45 phút** hoặc phát sinh **≥ 1 ca bị ùn (> 60 phút)**, hoặc chi phí ngày vượt **8.000đ/ticket**: `Lê Thanh Tùng (NV-TUNG)` thu hẹp `business.pilot_scope` sang `{"mode": "percent", "percent": 50}` hoặc giới hạn 1–2 kho ít sự cố nhất; nếu lỗi 429 làm hỏng ghi dữ liệu thì tắt `issue_refund` trong `switches.json`. |
 | Thêm người thì chi phí mỗi ticket và ROI thay đổi thế nào (đọc report)? | Mỗi người trực thêm tốn `30.000đ` phí giữ chỗ mỗi ca (`reviewer_standby_fee_vnd`). Với `22 ticket/ngày` hiện tại (`4.456đ/ticket`, `ROI = 1,24`, tiết kiệm `121.962đ/ngày`), thêm 1 người trực làm chi phí tăng thêm `30.000 / 22 ≈ +1.364đ/ticket` (lên ~`5.820đ/ticket`, tiết kiệm giảm còn ~`91.962đ`, ROI giảm từ `1,24` xuống ~`0,72`); nhưng nếu lưu lượng cao điểm tăng lên `40–60 ticket/ngày` thì chi phí giữ chỗ phân bổ giảm chỉ còn `500–750đ/ticket` trong khi ngăn được `queue_stuck > 0`. |
 
+**[Bổ sung vòng 2 — bút khác màu — sau thẻ S4 (`Đêm 11.11`)]**
+- **Số liệu thật trên thẻ S4 (`R-S4-grade-20261118-201721-e59e38` vs `R-S4-grade-20261118-201926-217918`):** Ngày sale có `41` ticket, riêng 1 giờ sau 20h (`arrive_min` `240–298`) dồn `30` ticket liên tiếp (cứ 2 phút/ticket), trong đó tới `15` ca vỡ/thất lạc cộng kiểm mẫu & vượt ngân sách sale đẩy tải cực đại lên `16 ca/giờ` (`peak_hour_queue_load = 16.0`).
+- **Với `1` người trực (`6 ca/giờ`) ở mốc `prepared`:** chờ lâu nhất `82.0 phút`, bị ùn **`5 ca`** (`> 60 phút`).
+- **Bổ sung trực ca ngày sale/giờ cao điểm (`config/operating_gates.json`):** nâng `operations.reviewers_on_shift` từ `1 -> 2` (`review_capacity_per_hour = null` → `12 ca/giờ`, dưới sự điều phối của `Trần Thị Hạnh (NV-HANH)` và trực tăng cường cùng nhóm CSKH), kết quả chờ lâu nhất giảm từ `82.0 phút -> 15.0 phút`, `0` ca bị ùn, chi phí `7.296đ/ticket (<= 8.000đ)`, `ROI = 0,37 (>= 0,25)`.
+- **Không tăng lên `3` người trực cho 41 ticket/ngày** vì phí giữ chỗ tăng thêm `+30.000đ` đẩy chi phí lên `~8.028đ/ticket (> 8.000đ)` và kéo ROI xuống `< 0,25`; thay vào đó, nếu tải thực tế vượt `18 ca/giờ` và chờ chạm `> 45 phút`, `Lê Thanh Tùng (NV-TUNG)` thu hẹp `business.pilot_scope` về 50% hoặc kho trọng điểm hoặc tạm tắt tự động ở nhóm kho quá tải.
+
 ---
 
 <a id="b8"></a>

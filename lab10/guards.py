@@ -93,6 +93,15 @@ def _gate_issue_refund(ctx, action):
             if cust_today + expected > cust_cap:
                 ctx.log("refund_customer_daily_cap", cust_today=cust_today, expected=expected, cap=cust_cap)
                 return Verdict.escalate("tổng hoàn tự động cho khách trong ngày vượt ngưỡng Ops")
+        finance_budget = ctx.tools.ops_limits().get("daily_auto_refund_budget_vnd")
+        if finance_budget is not None and not approval_id:
+            today_auto = ctx.tools.auto_refund_today_vnd()
+            if today_auto + expected > finance_budget:
+                ctx.log("refund_finance_daily_budget", today=today_auto, expected=expected, budget=finance_budget)
+                return Verdict.escalate("vượt ngân sách hoàn tự động trong ngày của Finance, chuyển người duyệt")
+
+    if any(e.get("type") == "llm_fallback" for e in ctx.events):
+        ctx.log("llm_fallback_guarded", basis=action.get("basis"), expected=expected)
 
     if (
         int(action.get("amount_vnd", 0)) != expected

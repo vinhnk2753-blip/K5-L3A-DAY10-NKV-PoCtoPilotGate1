@@ -5,10 +5,10 @@
   ],
   "incident": "S4",
   "decision_v1": "Tiếp tục",
-  "decision_v2": "",
+  "decision_v2": "Tiếp tục",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Thiết kế hiện giả định bão giờ cao điểm đợt sale chỉ đạt khoảng 16 ca cần duyệt mỗi giờ để 2 người trực (12 ca/giờ) xử lý kịp dưới SLA 60 phút và lỗi HTTP 429 chỉ ảnh hưởng bước policy_check mà không làm hỏng bước extract phân loại hàng vỡ/thất lạc.",
+    "reduce_or_prevent": "Cổng code trong write_gate và trần tiền hoàn 300.000đ thực sự NGĂN được tác hại hoàn sai, phạt oan hãng và vượt ngân sách Finance (nhờ luôn đối chiếu tracking DB và khóa trước khi ghi sổ cái), còn việc tăng lên 2 người trực chỉ GIẢM khả năng ùn tắc hàng chờ vì nếu lưu lượng sale tăng vượt 24 ca duyệt mỗi giờ thì hàng chờ vẫn sẽ vượt SLA 60 phút.",
+    "measure_in_pilot": "Trong pilot thật trước Gate 2 cần đo lại phân phối lượt ticket thực tế theo từng giờ cao điểm, tỉ lệ lỗi API 429/timeout ở cả bước extract lẫn policy_check, thời gian duyệt thực tế mỗi ca của nhân viên CSKH có decision_note so với giả định 4–10 phút, và tỉ lệ khiếu nại ẩn từ hãng/shop khi đối chiếu sổ cuối tuần."
   }
 }

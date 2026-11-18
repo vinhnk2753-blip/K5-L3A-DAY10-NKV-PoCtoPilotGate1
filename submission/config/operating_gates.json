@@ -1,0 +1,35 @@
+{
+  "_huong_dan": "Cổng kinh doanh, vận hành, pháp lý mà trợ lý PHẢI tuân theo. Bàn điền ở vòng 1, chốt bằng python3 -m lab10.checkpoint, rồi được sửa tiếp ở vòng 2.",
+  "business": {
+    "daily_refund_cap_vnd": 300000,
+    "cost_budget_per_ticket_vnd": 1500,
+    "pilot_scope": {"mode": "all", "warehouses": [], "percent": 100},
+    "roi_min": 0.25
+  },
+  "operations": {
+    "pic": "NV-TUNG",
+    "approver_id": "NV-HANH",
+    "reviewers_on_shift": 2,
+    "review_capacity_per_hour": null,
+    "max_queue_wait_minutes": 60,
+    "stop_conditions": [
+      "Khi phát hiện >= 1 lần lộ dữ liệu cá nhân (PII) người nhận sang bên thứ ba thì tắt ngay notify_carrier và kiểm tra bộ lọc PII.",
+      "Khi phát hiện >= 1 lỗi ghi oan cho hãng vận chuyển không có nguyên nhân từ tracking DB thì tắt công tắc file_carrier_fault.",
+      "Khi tổng hoàn tự động trong ngày chạm ngân sách ngày (300.000đ ngày sale / 1.500.000đ ngày thường) hoặc tải hàng chờ vượt 12 ca/giờ (SLA 60 phút) gây ùn ca thì chuyển người duyệt, bổ sung trực ca hoặc thu hẹp phạm vi."
+    ],
+    "alert_channel": "#logix-pilot-ops-alerts (Slack nội bộ & hotline trực ca)",
+    "decision_note": true,
+    "review_sampling_pct": 10
+  },
+  "legal": {
+    "pii_fields_blocked_to_third_party": [
+      "recipient_contact",
+      "name",
+      "phone",
+      "street",
+      "address",
+      "recipient"
+    ],
+    "carrier_fault_requires_recorded_cause": true
+  }
+}

@@ -34,6 +34,7 @@ Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi ti�
 - Thiết lập repo, cấu hình git và đối chiếu tài liệu Lab 9 (`PRD_v1.1.md`, `eval_card.md`, `failure_taxonomy.md`).
 - Xây dựng Bản tiêu chí chấp nhận (`config/acceptance_criteria.json`) và điền Phiếu A trước khi chạy đánh giá.
 - Phân tích rủi ro (bảng soát lỗi, bản đồ dữ liệu & drift, HAZOP, checklist 9 nhóm việc, pre-mortem), cài đặt cổng phòng ngừa vòng 1 (`lab10/guards.py`), cấu hình cổng vận hành/kinh doanh/pháp lý (`config/operating_gates.json`), chốt mốc `prepared` và lập quyết định Gate 1 v1.
+- Xử lý sự cố Vòng 2 (`S4` — Đêm 11.11: ticket gấp ba, hàng chờ duyệt ngập): bổ sung kiểm soát `daily_auto_refund_budget_vnd` trong `lab10/guards.py`, thêm 4 chỉ số theo dõi mới trong `lab10/monitors.py`, cập nhật `reviewers_on_shift = 2` và `daily_refund_cap_vnd = 300000` trong `config/operating_gates.json`, hoàn thiện Phiếu C (`C0–C12`), Runbook 4–5 và gom bài nộp `submission/`.
 
 ### Bằng chứng
 
@@ -42,10 +43,13 @@ Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi ti�
   - Baseline (`base`): `R-base-before-20261118-195340-bde05c` (`pass_rate 0.9909`, hỏng `T-002@55`).
   - Thử cổng (`after`): `R-base-after-20261118-195544-e59e38` (`pass_rate 1.0`, `pass_k 1.0`, `0` hoàn sai, `0` lỗi oan, `0` lộ PII, `4.456đ/ticket`, `ROI 1.24`).
   - Chốt cổng vòng 1 (`checkpoint` hash `818eec21`, `prepared`): `R-base-prepared-20261118-195635-e59e38` (`pass_rate 1.0`, `0` vượt trần).
-- Phiếu: toàn bộ mục `A1–A5` ([`templates/form-a-criteria.md`](templates/form-a-criteria.md)) và `B0–B8` ([`templates/form-b-evaluation-gates.md`](templates/form-b-evaluation-gates.md)).
-- *(Sẽ bổ sung thêm bằng chứng Vòng 2 sau khi nhận thẻ sự cố ở phút 125.)*
+- Các lần chạy Vòng 2 (`S4`, `runs/`):
+  - Grade trước sửa: `R-S4-grade-20261118-201721-e59e38` (`prepared` đỡ sạch `160k` hoàn sai & `27` lỗi oan về `0`, còn `5 ca ùn` và `422k > 300k`).
+  - Thử từng bước (`after`): `R-S4-after-20261118-201827-0ba81f` (hạ trần `300k`), `R-S4-after-20261118-201840-732d71` (tăng `reviewers_on_shift=2`), `R-S4-after-20261118-201917-217918` (thêm 4 monitor mới) và kiểm regression `R-base-after-20261118-201918-217918`.
+  - Grade sau sửa cuối: `R-S4-grade-20261118-201926-217918` (`PASS-VISIBLE`, `5/5` mục kiểm hiện có đạt `✅`, `0` vượt trần).
+- Phiếu: toàn bộ `A1–A5` ([`templates/form-a-criteria.md`](templates/form-a-criteria.md)), `B0–B8` ([`templates/form-b-evaluation-gates.md`](templates/form-b-evaluation-gates.md)), `C0–C12` ([`templates/form-c-incident.md`](templates/form-c-incident.md)).
 
 ### Exit ticket
 
-- **Một điều học được:** *(cập nhật sau khi hoàn thành Vòng 2)*
-- **Một điều còn chưa chắc:** *(cập nhật sau khi hoàn thành Vòng 2)*
+- **Một điều học được:** Cổng kỹ thuật bằng code (`guards.py`) có thể chặn dứt điểm các lỗi logic/model như `fail_open` khi 429, nhưng một hệ thống AI đưa ra quyết định Gate 1 chỉ thực sự an toàn khi gắn thêm ngưỡng kinh doanh động (trần ngày sale `300.000đ` của Finance), quy hoạch nhân lực hàng chờ (`2` người trực cho giờ cao điểm thay vì `3` để cân bằng SLA `15 phút` và chi phí `7.296đ/ticket`), cùng bộ chỉ số monitor không cần nhãn (`llm_fallback_rate`, `peak_hour_queue_load`, `auto_refund_day_max_vnd`, `model_override_rate`).
+- **Một điều còn chưa chắc:** Với tải thực tế ngoài production nếu lưu lượng đợt sale vượt `24 ca duyệt/giờ` hoặc lỗi HTTP `429` từ LLM lan sang cả bước `extract`, hiện chưa có dữ liệu đo trực tiếp thời gian duyệt thực tế của nhân viên CSKH và mức độ chính xác phân loại của `extract` khi degraded để biết chắc ranh giới giữa giữ `Tiếp tục` và chuyển sang `Thu hẹp`.
