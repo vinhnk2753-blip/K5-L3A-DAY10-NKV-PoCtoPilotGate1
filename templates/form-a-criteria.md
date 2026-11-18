@@ -145,8 +145,8 @@ git add config/acceptance_criteria.json config/acceptance_criteria.lock && git c
 
 | Mục | Điền |
 |---|---|
-| Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | *(điền ngay sau khi chạy `lab10.criteria sign`)* |
-| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | *(điền ngay sau khi commit)* |
-| Đã push lên `origin main` thành công? | chưa *(chờ tạo repo trên GitHub từ template rồi push)* |
+| Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | `2026-11-18T19:53:06` (`sha256: ca98f5ab...`) |
+| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | `88d0de5` |
+| Đã push lên `origin main` thành công? | chưa *(đã commit `Sign acceptance criteria` trước mọi lần chạy `eval`; chờ tạo repo từ template trên GitHub để push `origin main`)* |
 
 Sau bước này **không sửa** `config/acceptance_criteria.json`, kể cả mở rồi lưu lại bằng trình soạn thảo tự định dạng.

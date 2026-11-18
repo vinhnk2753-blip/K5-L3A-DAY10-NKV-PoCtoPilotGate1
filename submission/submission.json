@@ -1,8 +1,10 @@
 {
-  "team": "",
-  "members": [],
+  "team": "K5-L3A-DAY10-NKV-PoCtoPilotGate1",
+  "members": [
+    "NguyenKhanhVinh-2A202603390"
+  ],
   "incident": "",
-  "decision_v1": "",
+  "decision_v1": "Tiếp tục",
   "decision_v2": "",
   "three_lines": {
     "environment_assumption": "",

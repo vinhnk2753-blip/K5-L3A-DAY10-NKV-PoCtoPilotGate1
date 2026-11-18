@@ -37,7 +37,13 @@ Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi ti�
 
 ### Bằng chứng
 
-- *(Cập nhật mã commit, mã lần chạy `runs/<mã>` và dòng trong phiếu sau khi hoàn thành từng mốc Vòng 1 và Vòng 2.)*
+- Commit ký tiêu chí: `88d0de5` (`Sign acceptance criteria`, `signed_at: 2026-11-18T19:53:06`, sha256 `ca98f5ab...`) — thực hiện trước lần chạy `eval` đầu tiên (`19:53:40`).
+- Các lần chạy Vòng 1 (`runs/`):
+  - Baseline (`base`): `R-base-before-20261118-195340-bde05c` (`pass_rate 0.9909`, hỏng `T-002@55`).
+  - Thử cổng (`after`): `R-base-after-20261118-195544-e59e38` (`pass_rate 1.0`, `pass_k 1.0`, `0` hoàn sai, `0` lỗi oan, `0` lộ PII, `4.456đ/ticket`, `ROI 1.24`).
+  - Chốt cổng vòng 1 (`checkpoint` hash `818eec21`, `prepared`): `R-base-prepared-20261118-195635-e59e38` (`pass_rate 1.0`, `0` vượt trần).
+- Phiếu: toàn bộ mục `A1–A5` ([`templates/form-a-criteria.md`](templates/form-a-criteria.md)) và `B0–B8` ([`templates/form-b-evaluation-gates.md`](templates/form-b-evaluation-gates.md)).
+- *(Sẽ bổ sung thêm bằng chứng Vòng 2 sau khi nhận thẻ sự cố ở phút 125.)*
 
 ### Exit ticket
 
